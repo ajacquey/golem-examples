@@ -222,7 +222,7 @@
        petsc_options_iname = '-ksp_type
                               -pc_type -pc_hypre_type
                               -ksp_rtol -ksp_max_it'
-       petsc_options_value = 'preonly
+       petsc_options_value = 'fgmres
                               hypre boomeramg
                               1.0e-04 500'
      [../]

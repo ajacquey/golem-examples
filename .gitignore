@@ -1,2 +1,23 @@
 # Mac stuff
 .DS_Store
+
+# H_fracture
+H_fracture/H_fracture_out.e
+
+# M_oedometer
+M_oedometer/M_oedometer_out.e
+M_oedometer/M_oedometer_out.csv
+
+# TH_fracture
+TH_fracture/TH_fracture_out.e
+TH_fracture/TH_fracture_csv.csv
+
+# TH_multi_frac
+TH_multi_frac/TH_multi_frac_IC_out.e
+TH_multi_frac/TH_multi_frac_out.e
+TH_multi_frac/TH_multi_frac_csv.csv
+
+# THM_doublet
+THM_doublet/doublet_THM_exodus.e
+THM_doublet/doublet_THM_line_line_sample_*.csv
+THM_doublet/doublet_THM_p*.csv
