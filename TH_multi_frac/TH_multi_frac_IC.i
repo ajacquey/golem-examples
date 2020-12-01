@@ -15,21 +15,16 @@
 
 [Variables]
   [./pore_pressure]
+    [./InitialCondition]
+      type = FunctionIC
+      function = pressure_fc
+    [../]
   [../]
   [./temperature]
-  [../]
-[]
-
-[ICs]
-  [./pore_pressure_ic]
-    type = FunctionIC
-    variable = pore_pressure
-    function = pressure_fc
-  [../]
-  [./temperature_ic]
-    type = FunctionIC
-    variable = temperature
-    function = temperature_fc
+    [./InitialCondition]
+      type = FunctionIC
+      function = temperature_fc
+    [../]
   [../]
 []
 
@@ -186,16 +181,20 @@
     characteristic_stress = 1.0e+06
   [../]
   [./fluid_density]
-	  type = GolemFluidDensityIAPWS
+    type = GolemFluidDensityConstant
+    execute_on = 'INITIAL'
   [../]
   [./fluid_viscosity]
-	  type = GolemFluidViscosityIAPWS
+    type = GolemFluidViscosityConstant
+    execute_on = 'INITIAL'
   [../]
   [./porosity]
     type = GolemPorosityConstant
+    execute_on = 'INITIAL'
   [../]
   [./permeability]
     type = GolemPermeabilityConstant
+    execute_on = 'INITIAL'
   [../]
 []
 
@@ -206,7 +205,7 @@
      [./HT]
        splitting = 'H T'
        splitting_type = multiplicative
-       petsc_options = '-snes_monitor -snes_linesearch_monitor -snes_converged_reason'
+       petsc_options = '-snes_linesearch_monitor -snes_converged_reason'
        petsc_options_iname = '-ksp_type
                               -ksp_rtol -ksp_max_it
                               -snes_type -snes_linesearch_type
@@ -248,7 +247,5 @@
 [Outputs]
   print_linear_residuals = true
   perf_graph = true
-  [./out]
-    type = Exodus
-  [../]
+  exodus = false
 []
