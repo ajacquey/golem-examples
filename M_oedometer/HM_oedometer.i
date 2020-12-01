@@ -14,6 +14,7 @@
 
 [GlobalParams]
   displacements = 'disp_x disp_y disp_z'
+  pore_pressure = pf
 []
 
 [Variables]
@@ -26,6 +27,10 @@
     family = LAGRANGE
   [../]
   [./disp_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./pf]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -46,6 +51,18 @@
     type = GolemKernelM
     variable = disp_z
     component = 2
+  [../]
+  [./HKernelTime]
+    type = GolemKernelTimeH
+    variable = pf
+  [../]
+  [./HKernelPoroelastuc]
+    type = GolemKernelHPoroElastic
+    variable = pf
+  [../]
+  [./HKernelDarcy]
+    type = GolemKernelH
+    variable = pf
   [../]
 []
 
@@ -135,22 +152,35 @@
   [../]
   [./MMaterial]
     type = GolemMaterialMInelastic
-    block = 0
+    pore_pressure = pf
     strain_model = incr_small_strain
     bulk_modulus = 2.0e+03
     shear_modulus = 2.0e+03
+    solid_bulk_modulus = 5.0e+03
     inelastic_models = 'DP'
-    porosity_uo = porosity
-    fluid_density_uo = fluid_density
+    porosity_initial = 0.1
+    permeability_initial = 1.0e-15
+    fluid_density_initial = 1.0e+03
+    fluid_viscosity_initial = 1.0e-03
+    fluid_density_uo = FLUID_DENSITY
+    fluid_viscosity_uo = FLUID_VISCOSITY
+    porosity_uo = POROSITY
+    permeability_uo = PERMEABILITY
   [../]
 []
 
 [UserObjects]
-  [./porosity]
+  [./FLUID_DENSITY]
+    type = GolemFluidDensityConstant
+  [../]
+  [./FLUID_VISCOSITY]
+    type = GolemFluidViscosityConstant
+  [../]
+  [./POROSITY]
     type = GolemPorosityConstant
   [../]
-  [./fluid_density]
-    type = GolemFluidDensityConstant
+  [./PERMEABILITY]
+    type = GolemPermeabilityConstant
   [../]
   [./DP_cohesion]
     type = GolemHardeningConstant
@@ -190,6 +220,11 @@
   [./Ep_xx]
     type = ElementAverageValue
     variable = plastic_strain_xx
+    outputs = csv
+  [../]
+  [./Pf]
+    type = ElementAverageValue
+    variable = pf
     outputs = csv
   [../]
 []

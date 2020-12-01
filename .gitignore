@@ -7,6 +7,8 @@ H_fracture/H_fracture_out.e
 # M_oedometer
 M_oedometer/M_oedometer_out.e
 M_oedometer/M_oedometer_out.csv
+M_oedometer/HM_oedometer_out.e
+M_oedometer/HM_oedometer_out.csv
 
 # TH_fracture
 TH_fracture/TH_fracture_out.e
