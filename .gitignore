@@ -4,6 +4,9 @@
 # H_fracture
 H_fracture/H_fracture_out.e
 
+# HM_triax
+HM_triax/HM_triax_loading_out.e
+
 # M_oedometer
 M_oedometer/M_oedometer_out.e
 M_oedometer/M_oedometer_out.csv
@@ -13,6 +16,10 @@ M_oedometer/HM_oedometer_out.csv
 # TH_fracture
 TH_fracture/TH_fracture_out.e
 TH_fracture/TH_fracture_csv.csv
+
+# TH_2Faults2Units
+TH_2Faults2Units/TH_2Faults2Units_csv.csv
+TH_2Faults2Units/TH_2Faults2Units_out.e
 
 # TH_multi_frac
 TH_multi_frac/TH_multi_frac_IC_out.e
